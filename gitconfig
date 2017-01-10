@@ -1,0 +1,10 @@
+[user]
+
+[alias]
+    tree = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+[core]
+    excludesfile =  ~/dotfiles/gitignore
+
+[push]
+    default = simple
