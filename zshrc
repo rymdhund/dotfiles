@@ -38,6 +38,9 @@ alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
+# virtualenv
+alias envup="source env/bin/activate"
+
 # docker
 alias docker-rm-all-containers='docker ps -q -a | xargs docker rm'
 alias docker-rm-untagged-images='docker images -q --filter "dangling=true" | xargs docker rmi'
