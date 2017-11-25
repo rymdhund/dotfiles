@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="rymdhund"
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git vi-mode zsh-syntax-highlighting history-substring-search docker-compose)
+plugins=(git vi-mode zsh-syntax-highlighting history-substring-search docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -16,6 +16,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 export EDITOR=vim
+export KEYTIMEOUT=1  # short delay for escape
 
 ###########
 # Aliases #
@@ -53,3 +54,9 @@ alias ips="/sbin/ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)
 if [ -f $HOME/.environ ]; then
   source $HOME/.environ
 fi
+
+for f in `ls $HOME/.zsh_conf.*`; do
+  source $f
+done
+
+export PATH=$HOME/.local/bin:$PATH
