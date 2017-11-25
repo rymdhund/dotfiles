@@ -96,8 +96,14 @@ nnoremap <F6> :GundoToggle<CR>
 """""""""""
 
 " Load vim-plug
-if empty(glob("~/.vim/autoload/plug.vim"))
+if has('nvim')
+  if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
+    execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
+else
+  if empty(glob("~/.vim/autoload/plug.vim"))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  endif
 endif
 call plug#begin('~/.vim/plugged')
 
@@ -109,6 +115,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'bling/vim-bufferline'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
@@ -118,11 +125,19 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/camelcasemotion'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
-colorscheme solarized
+try
+  colorscheme solarized
+catch
+  " couldn't find it
+endtry
 
 " To let python lines be longer than 80:
 " let g:syntastic_python_flake8_args='--ignore=E501'
@@ -142,6 +157,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_ocaml_checkers = ['merlin']
 " hack to make syntastic skip java checking since it's super slow!
 let g:loaded_syntastic_java_javac_checker = 1
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " avoid irritating csapprox warning
 let g:CSApprox_verbose_level = 0
@@ -161,3 +178,15 @@ let g:ctrlp_custom_ignore = {
 \}
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+
+" Language server
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+let g:LanguageClient_autoStart = 1
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
