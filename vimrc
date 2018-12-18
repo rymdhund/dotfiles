@@ -107,6 +107,21 @@ else
 endif
 call plug#begin('~/.vim/plugged')
 
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" Use ale for syntax checking
+Plug 'w0rp/ale'
+" Plug 'vim-syntastic/syntastic' Try ale instead
+
+" Deoplete for completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+"Plug 'Valloric/YouCompleteMe' Try deoplete instead
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-repeat'
@@ -119,17 +134,13 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Valloric/YouCompleteMe'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/camelcasemotion'
 Plug 'altercation/vim-colors-solarized'
-" Plug 'vim-syntastic/syntastic'
-Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -188,5 +199,11 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><C-h> deoplete#mappings#manual_complete() 
 
 autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>

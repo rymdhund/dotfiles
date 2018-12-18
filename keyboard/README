@@ -1,0 +1,21 @@
+On debian:
+
+```
+cp sedvorak /usr/share/X11/xkb/symbols/
+setxkbmap sedvorak
+```
+
+To get different desktops to recognize the layout, add this to /usr/share/X11/xkb/rules/evdev.xml (after the swedish <layout> section).
+
+```
+    <layout>
+      <configItem>
+        <name>sedvorak</name>
+        <shortDescription>se dvorak</shortDescription>
+        <description>SwedishRymdhund</description>
+        <languageList>
+          <iso639Id>swe</iso639Id>
+        </languageList>
+      </configItem>
+    </layout>
+```

@@ -47,7 +47,7 @@ alias docker-rm-all-containers='docker ps -q -a | xargs docker rm'
 alias docker-rm-untagged-images='docker images -q --filter "dangling=true" | xargs docker rmi'
 
 # ip stuff
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="/sbin/ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 
