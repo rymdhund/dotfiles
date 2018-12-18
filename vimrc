@@ -32,13 +32,16 @@ au InsertLeave * hi StatusLine term=NONE    ctermfg=black guifg=black
 " Key bindings "
 """"""""""""""""
 
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+
 " switch meaning of ' ` to make ' more useful
 nnoremap ' `
 nnoremap ` '
 
 " to switch off hlsearch
 nmap <silent> <leader>n :silent :nohlsearch<CR>
-nmap <silent> <leader>nt :silent :NERDTree<CR>
+nmap <silent> <leader>nt :silent :NERDTreeToggle<CR>
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
