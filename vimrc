@@ -114,19 +114,16 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
 " Use ale for syntax checking
 Plug 'w0rp/ale'
-" Plug 'vim-syntastic/syntastic' Try ale instead
 
-" Deoplete for completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-"Plug 'Valloric/YouCompleteMe' Try deoplete instead
+" ncm2 for autocompletion
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-jedi'
+Plug 'roxma/nvim-yarp'
+
+Plug 'easymotion/vim-easymotion'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -159,26 +156,61 @@ endtry
 " To let python lines be longer than 80:
 " let g:syntastic_python_flake8_args='--ignore=E501'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1 " buffer list
 let g:airline#extensions#tabline#fnamemod = ':t' " show only filenames
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ocaml_checkers = ['merlin']
-" hack to make syntastic skip java checking since it's super slow!
-let g:loaded_syntastic_java_javac_checker = 1
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+"""""""
+" Ale "
+"""""""
 
 " let ale open loclist
 let g:ale_open_list = 1
+
+""""""""
+" NCM2 "
+""""""""
+
+" enable ncm2 for all buffers
+augroup NCM2
+  autocmd!
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
+"""""""""""""""
+" Easy-motion "
+"""""""""""""""
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+""""""
+
 
 " avoid irritating csapprox warning
 let g:CSApprox_verbose_level = 0
