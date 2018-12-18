@@ -40,6 +40,9 @@ nnoremap ` '
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 nmap <silent> <leader>nt :silent :NERDTree<CR>
 
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window. Protect against
 " screwing up folding when switching between windows.
@@ -171,6 +174,9 @@ let g:loaded_syntastic_java_javac_checker = 1
 let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
+" let ale open loclist
+let g:ale_open_list = 1
+
 " avoid irritating csapprox warning
 let g:CSApprox_verbose_level = 0
 
@@ -199,9 +205,6 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
-
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><C-h> deoplete#mappings#manual_complete() 

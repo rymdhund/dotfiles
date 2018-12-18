@@ -56,7 +56,7 @@ if [ -f $HOME/.environ ]; then
 fi
 
 setopt null_glob
-for f in $HOME/.zsh_conf.*; do
+for f in $HOME/.zsh.d/*; do
   source $f
 done
 
