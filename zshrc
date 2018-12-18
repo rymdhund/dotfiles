@@ -28,6 +28,8 @@ alias asdf='setxkbmap sedvorak'
 # tmux to fix vim colors
 alias tmux="TERM=screen-256color-bce tmux"
 
+alias vim=nvim
+
 # git
 alias gl='git pull'
 alias gp='git push'
