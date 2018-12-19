@@ -125,6 +125,9 @@ Plug 'roxma/nvim-yarp'
 
 Plug 'easymotion/vim-easymotion'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-repeat'
@@ -134,7 +137,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'bling/vim-bufferline'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
@@ -196,6 +198,8 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+call ncm2#override_source('LanguageClient_python', {'enable': 0})
+
 
 """""""""""""""
 " Easy-motion "
@@ -208,6 +212,14 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+"""""""
+" fzf "
+"""""""
+nmap <Leader>o :GFiles<CR>
+nmap <Leader>O :Files<CR>
+nmap <Leader>h :History<CR>
+
 
 """"""
 
@@ -222,14 +234,6 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
-
-let g:ctrlp_working_path_mode = 'ra' " use nearest vcs anscestor as base
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Language server
 let g:LanguageClient_serverCommands = {
