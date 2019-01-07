@@ -62,4 +62,4 @@ for f in $HOME/.zsh.d/*; do
   source $f
 done
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/me/bin:$PATH
