@@ -113,7 +113,10 @@ else
 endif
 call plug#begin('~/.vim/plugged')
 
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
 
 " Use ale for syntax checking
 Plug 'w0rp/ale'
@@ -155,10 +158,7 @@ catch
   " couldn't find it
 endtry
 
-" To let python lines be longer than 80:
-" let g:syntastic_python_flake8_args='--ignore=E501'
-
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1 " buffer list
 let g:airline#extensions#tabline#fnamemod = ':t' " show only filenames
 
@@ -198,6 +198,7 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" use ncm2-jedi instead of language client
 call ncm2#override_source('LanguageClient_python', {'enable': 0})
 
 
