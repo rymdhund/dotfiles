@@ -49,6 +49,7 @@ Plug 'vim-scripts/camelcasemotion'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
