@@ -4,7 +4,10 @@
 hg_ps1(){
 }
 
-PROMPT='%{$fg[red]%}%m%{$reset_color%}:%{$fg[green]%}%~%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(hg_ps1)%(!.#.$) '
+# ignore opam_prompt_info if not exists
+functions opam_prompt_info >& /dev/null || opam_prompt_info(){}
+
+PROMPT='$(opam_prompt_info)%{$fg[red]%}%m%{$reset_color%}:%{$fg[green]%}%~%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(hg_ps1)%(!.#.$) '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
