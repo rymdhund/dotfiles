@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="rymdhund"
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git vi-mode zsh-syntax-highlighting history-substring-search docker docker-compose opam)
+plugins=(git zsh-syntax-highlighting history-substring-search docker docker-compose opam)
 
 source $ZSH/oh-my-zsh.sh
 

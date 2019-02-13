@@ -7,9 +7,16 @@ if [[ $FOUND_OPAM -eq 1 ]]; then
   eval $(opam env --shell=zsh)
 
   function opam_prompt_info(){
-    switch="$(opam switch show)"
+    local switch="$(opam switch show)"
     [[ $switch == '/'* ]] && echo "${ZSH_THEME_OPAM_PROMPT_PREFIX:=[}${switch:t}${ZSH_THEME_OPAM_PROMPT_SUFFIX:=]}"
   }
+
+  function opam_env_hook() {
+    eval $(opam env --shell=zsh)
+  }
+  if [[ -z ${precmd_functions[(r)opam_env_hook]} ]]; then
+     precmd_functions+=opam_env_hook
+  fi
 else
   function opam_prompt_info(){
   }
