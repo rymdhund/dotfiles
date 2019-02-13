@@ -94,6 +94,8 @@ set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 set wildignorecase                  " case insensitive file name tab completion
 set wildmode=longest:full,full      " file name completion
 
+set splitbelow
+
 """"""""""""""""
 " Key bindings "
 """"""""""""""""
