@@ -1,8 +1,0 @@
-#!/bin/bash
- 
-xrdb -merge .Xresources
- 
-# to get anti-aliased gnome fonts and stuff
-gnome-settings-daemon &
-
-exec awesome
