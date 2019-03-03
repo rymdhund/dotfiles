@@ -50,6 +50,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'scrooloose/nerdcommenter'
+Plug 'jpalardy/vim-slime'
 
 call plug#end()
 
@@ -204,6 +205,12 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+"""""""""
+" Slime "
+"""""""""
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 
 """"""""
 " Misc "
