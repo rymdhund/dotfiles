@@ -97,6 +97,8 @@ set wildmode=longest:full,full      " file name completion
 
 set splitbelow
 
+set cmdheight=2
+
 """"""""""""""""
 " Key bindings "
 """"""""""""""""
@@ -138,6 +140,12 @@ augroup END
 
 " let ale open loclist
 let g:ale_open_list = 1
+
+let g:ale_fixers = {
+\   'ocaml': ['ocamlformat'],
+\}
+
+let g:ale_fix_on_save = 1
 
 
 """"""""
@@ -197,9 +205,10 @@ nmap <Leader>h :History<CR>
 """""""""""""""""""
 let g:LanguageClient_serverCommands = {
     \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocamlmerlin-lsp', '--stdio'],
     \ 'typescript': ['javascript-typescript-stdio']
     \ }
+
 let g:LanguageClient_autoStart = 1
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
