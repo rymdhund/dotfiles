@@ -47,6 +47,7 @@ alias envup="source env/bin/activate"
 # docker
 alias docker-rm-all-containers='docker ps -q -a | xargs docker rm'
 alias docker-rm-untagged-images='docker images -q --filter "dangling=true" | xargs docker rmi'
+alias dc='docker-compose'
 
 # ip stuff
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
