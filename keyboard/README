@@ -7,21 +7,22 @@ xkbcomp -I$HOME/dotfiles/keyboard conf.xkb $DISPLAY
 ### Getting different desktops to recognize the layout
 
 ```
-cp symbols/sedvorak /usr/share/X11/xkb/symbols/
-setxkbmap sedvorak
+cat symbols/dvorak_rh >> /usr/share/X11/xkb/symbols/se
+setxkbmap se dvorak_rh
 ```
 
-And then add this to /usr/share/X11/xkb/rules/evdev.xml (after the swedish <layout> section).
+But this wont work on wayland
+
+To get gnome etc to recognise your layout (and maybe make it work in wayland) add this to /usr/share/X11/xkb/rules/evdev.xml (In the end of the swedish <VariantList>)
 
 ```
-    <layout>
-      <configItem>
-        <name>sedvorak</name>
-        <shortDescription>se dvorak</shortDescription>
-        <description>SwedishRymdhund</description>
-        <languageList>
-          <iso639Id>swe</iso639Id>
-        </languageList>
-      </configItem>
-    </layout>
+        <variant>
+          <configItem>
+            <name>dvorak_rh</name>
+            <description>Swedish (Rymdhund)</description>
+          </configItem>
+        </variant>
 ```
+
+This might be needed to reload:
+sudo dpkg-reconfigure xkb-data
