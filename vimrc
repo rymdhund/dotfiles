@@ -143,6 +143,8 @@ let g:ale_open_list = 1
 
 let g:ale_fixers = {
 \   'ocaml': ['ocamlformat'],
+\   'typescript': ['prettier'],
+\   'python': ['black'],
 \}
 
 let g:ale_fix_on_save = 1
@@ -152,10 +154,17 @@ let g:ale_fix_on_save = 1
 " NCM2 "
 """"""""
 
+" Hack to not fail if ncm2#enable_for_buffer does not exist
+function Ncm2_enable_if_exists()
+  if exists("*ncm2#enable_for_buffer")
+    call ncm2#enable_for_buffer()
+  endif
+endfunction
+
 " enable ncm2 for all buffers
 augroup NCM2
   autocmd!
-  autocmd BufEnter * call ncm2#enable_for_buffer()
+  autocmd BufEnter * call Ncm2_enable_if_exists()
 augroup END
 
 " IMPORTANTE: :help Ncm2PopupOpen for more information
