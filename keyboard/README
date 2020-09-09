@@ -26,3 +26,9 @@ To get gnome etc to recognise your layout (and maybe make it work in wayland) ad
 
 This might be needed to reload:
 sudo dpkg-reconfigure xkb-data
+
+## MacOS
+
+Put the dvorakrh.keylayout in "~/Library/Keyboard Layouts/" and you should be able to find it in keyboard settings.
+
+Recommend to switch cmd and opt buttons and run it with esc on caps-lock.
