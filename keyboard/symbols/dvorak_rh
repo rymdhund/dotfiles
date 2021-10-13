@@ -47,7 +47,7 @@ xkb_symbols "dvorak_rh" {
   key <AC07> {[ h,            H,            numbersign,     none            ]}; //   h H #
   key <AC08> {[ t,            T,            apostrophe,     none            ]}; //   t T '
   key <AC09> {[ n,            N,            grave,          none            ]}; //   n N `
-  key <AC10> {[ s,            S,            exclam,         none            ]}; //   s S !
+  key <AC10> {[ s,            S,            comma,          none            ]}; //   s S ,
   key <AC11> {[minus,         underscore,   bar,            none            ]}; //   - _ |
   key <BKSL> {[ comma,        semicolon,    ampersand,      none            ]}; //   , ; &
 
@@ -55,8 +55,8 @@ xkb_symbols "dvorak_rh" {
   // Fourth row
   key <LSGT> {[ none,         none,         none,           none            ]}; //
   key <AB01> {[ adiaeresis,   Adiaeresis,   none,           none            ]}; //   ä Ä
-  key <AB02> {[ q,            Q,            none,           none            ]}; //   q Q
-  key <AB03> {[ j,            J,            none,           none            ]}; //   j J
+  key <AB02> {[ q,            Q,            ampersand,      none            ]}; //   q Q &
+  key <AB03> {[ j,            J,            semicolon,      none            ]}; //   j J ;
   key <AB04> {[ k,            K,            percent,        none            ]}; //   k K %
   key <AB05> {[ x,            X,            none,           none            ]}; //   x X
   key <AB06> {[ b,            B,            none,           none            ]}; //   b B
