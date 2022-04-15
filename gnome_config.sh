@@ -32,6 +32,7 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 for ((x=1 ; x <= 9 ; x++)) ; do
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$x "['<Super>$x']"
   gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$x "['<Super><Shift>$x']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-$x "[]"
 done
 
 add_custom_binding() {
