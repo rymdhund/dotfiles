@@ -30,6 +30,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias vim=nvim
 
+alias bat="bat -p --theme GitHub"
+
 # git
 alias gl='git pull'
 alias gp='git push'
@@ -64,3 +66,7 @@ for f in $HOME/.zsh.d/*; do
 done
 
 export PATH=$HOME/.local/bin:$HOME/me/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
