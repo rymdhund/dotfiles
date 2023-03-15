@@ -35,3 +35,13 @@ alias gco='git checkout'
 alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+
+
+if test -d /usr/local/go/bin; and not contains /usr/local/go/bin $fish_user_paths
+  set -Ua fish_user_paths /usr/local/go/bin
+end
+
+if test -d $HOME/me/bin; and not contains $HOME/me/bin $fish_user_paths
+  set -Ua fish_user_paths $HOME/me/bin
+end
+
