@@ -13,10 +13,10 @@ else
 endif
 call plug#begin('~/.vim/plugged')
 
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh',
+"   \ }
 
 " Use ale for syntax checking
 Plug 'w0rp/ale'
